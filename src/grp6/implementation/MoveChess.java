@@ -5,6 +5,8 @@ import grp6.interfaces.Node;
 
 public class MoveChess implements Move {
 
+
+
     @Override
     public Node apply(Node state) {
         if(state instanceof GameStateChess){
