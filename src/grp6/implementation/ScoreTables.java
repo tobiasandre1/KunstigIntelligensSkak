@@ -3,6 +3,50 @@ package grp6.implementation;
 public class ScoreTables {
 
 
+
+    private static short CalculatePieceValue(char pieceType)
+    {
+
+
+    switch (Character.toLowerCase(pieceType)){
+        //pawn - bonde
+        case 'p':{
+            return 100;
+        }
+        //Knight - knægt
+        case 'n':{
+            return 320;
+        }
+        //Bishop - springer
+        case 'b':{
+            return 335;
+        }
+        //rook - tårn
+        case 'r':{
+            return 500;
+        }
+        //queen - dronning
+        case 'q':{
+            return 900;
+        }
+        //king - konge
+        case 'k':{
+            return 20000;
+        }
+
+        default:{
+            return 100;
+        }
+
+
+
+    }
+
+
+
+    }
+
+
     private static short[] pawnTable = new short[]{
             0,  0,  0,  0,  0,  0,  0,  0,
             50, 50, 50, 50, 50, 50, 50, 50,
