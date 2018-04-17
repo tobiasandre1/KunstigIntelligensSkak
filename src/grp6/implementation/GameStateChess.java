@@ -16,6 +16,14 @@ public class GameStateChess implements Node {
 
     @Override
     public boolean isTerminal() {
+
+        for (int j = 0; j < board.length; j++) {
+            if (board[j] == 'K' || board[j] == 'k') {
+                if (getMoves().size() == 0) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
