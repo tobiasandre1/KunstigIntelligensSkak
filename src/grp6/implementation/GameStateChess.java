@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GameStateChess implements Node {
 
-    char[] board = new char[65];
+    private char[] board = new char[64];
 
     @Override
     public List<Move> getMoves() {
@@ -22,5 +22,13 @@ public class GameStateChess implements Node {
     @Override
     public int getHeuristicValue() {
         return 0;
+    }
+
+    public char[] getBoard(){
+        return board;
+    }
+
+    public void setBoard(char[] board){
+        this.board = board;
     }
 }
