@@ -4,8 +4,55 @@ public class ScoreTables {
 
 
 
-    private static short CalculatePieceValue(char pieceType)
-    {
+
+    private static int calculateScores(){
+        int scores = 0;
+        return scores;
+    }
+
+
+
+    private static short getScoreForPositionAndType(char pieceType, int position){
+
+        switch (Character.toLowerCase(pieceType)){
+            //pawn - bonde
+            case 'p':{
+                return pawnTable[position];
+            }
+            //Knight - knægt
+            case 'n':{
+                return knightTable[position];
+            }
+            //Bishop - springer
+            case 'b':{
+                return bishopTable[position];
+            }
+            //rook - tårn
+            case 'r':{
+                return rookTable[position];
+            }
+            //queen - dronning
+            case 'q':{
+                return queenTable[position];
+            }
+            //king - konge
+            case 'k':{
+                return kingTable[position];
+            }
+
+            default:{
+                return 100;
+            }
+
+
+
+        }
+
+
+    }
+
+
+    private static short CalculatePieceValue(char pieceType) {
 
 
     switch (Character.toLowerCase(pieceType)){
