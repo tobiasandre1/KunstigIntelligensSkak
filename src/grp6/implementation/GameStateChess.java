@@ -2,6 +2,9 @@ package grp6.implementation;
 
 import grp6.interfaces.Move;
 import grp6.interfaces.Node;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameStateChess implements Node {
@@ -15,15 +18,15 @@ public class GameStateChess implements Node {
 
     @Override
     public boolean isTerminal() {
-
+// Needs to be change for when Move interfaces is done and can be implemented correctly, at this point, the structure seems to be correct.
         for (int i = 0; i < getMoves().size(); i++) {
-            if (Character.isLowerCase(getMoves().indexOf(i)) && getMoves().indexOf(i) == 'k'){
+            if (getMoves().contains('k')){
                 List<Move> whiteKing = getMoves();
                 if (whiteKing.isEmpty()) {
                     return true;
                 }
             }
-            else if (Character.isUpperCase(getMoves().indexOf(i) ) && getMoves().indexOf(i) == 'K'){
+            else if (getMoves().contains('K') ){
                 List<Move> blackKing = getMoves();
                 if (blackKing.isEmpty()) {
                     return true;
