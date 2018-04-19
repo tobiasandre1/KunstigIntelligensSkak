@@ -2,12 +2,11 @@ package grp6.implementation;
 
 import grp6.interfaces.Move;
 import grp6.interfaces.Node;
-
 import java.util.List;
 
 public class GameStateChess implements Node {
 
-    char[] board = new char[65];
+    private char[] board = new char[65];
 
     @Override
     public List<Move> getMoves() {
@@ -17,9 +16,16 @@ public class GameStateChess implements Node {
     @Override
     public boolean isTerminal() {
 
-        for (int j = 0; j < board.length; j++) {
-            if (board[j] == 'K' || board[j] == 'k') {
-                if (getMoves().size() == 0) {
+        for (int i = 0; i < getMoves().size(); i++) {
+            if (Character.isLowerCase(getMoves().indexOf(i)) && getMoves().indexOf(i) == 'k'){
+                List<Move> whiteKing = getMoves();
+                if (whiteKing.isEmpty()) {
+                    return true;
+                }
+            }
+            else if (Character.isUpperCase(getMoves().indexOf(i) ) && getMoves().indexOf(i) == 'K'){
+                List<Move> blackKing = getMoves();
+                if (blackKing.isEmpty()) {
                     return true;
                 }
             }
