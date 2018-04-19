@@ -40,7 +40,7 @@ public class StaticEvalTest {
 
 
         //(8*100)+(2*320)+(2*335)+(2*500)+(1*900)+20000 = 24010
-        Assert.assertEquals(0, eval.getMatericalCount(board,false));
+        Assert.assertEquals(0, eval.getMatericalCount(board,true));
     }
 
     @Test
@@ -48,12 +48,13 @@ public class StaticEvalTest {
         char[] board = new char[64];
         StaticEvaluation eval = new StaticEvaluation();
 
-        int ourIndex = 45;
-        board[ourIndex] = 'P';
-
-        System.out.println(Math.floor((ourIndex/8)+8*(7-ourIndex%8)));
+        board[14] = 'R';
 
 
+        int actual = eval.getPositionCount(board, true);
+        int expected = 10;
+
+    Assert.assertEquals(expected,actual);
 
     }
 

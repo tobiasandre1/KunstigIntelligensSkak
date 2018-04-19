@@ -21,14 +21,14 @@ public class StaticEvaluation {
         int result = 0;
 
         for (int i = 0; i < board.length; i++) {
-            result += CalculatePieceValue(board[i], isWhite);
+            result += CalculatePieceValue(board[i]);
         }
-
+        if(!isWhite) result = -result;
         return result;
     }
 
     //udregner ens brik værdi
-    private static int CalculatePieceValue(char pieceType, boolean isWhite) {
+    private static int CalculatePieceValue(char pieceType) {
 
         switch ((pieceType)) {
             //pawn - bonde
@@ -68,7 +68,7 @@ public class StaticEvaluation {
         int result =0;
 
         for (int i = 0; i < board.length; i++) {
-            //System.out.println(result);
+
             result += getScoreForPositionAndType(board[i],i,isWhite);
         }
 
@@ -80,28 +80,29 @@ public class StaticEvaluation {
 
 
     private  int getScoreForPositionAndType(char pieceType, int position, boolean isWhite){
-        int result = 0;
-        if(isWhite) {
 
+        int result = 0;
+       int newPosition =(int) Math.floor(position/8)+8*(7-position%8);
+
+        if(isWhite) {
             switch ((pieceType)) {
                 //pawn - bonde
-                case 'P': { result = pawnTable[position]; }
-                System.out.println("p" + result);
+                case 'P': { result = pawnTable[newPosition]; }
                 break;
                 //Knight - knægt
-                case 'N': { result =  knightTable[position]; }
+                case 'N': { result =  knightTable[newPosition]; }
                 break;
                 //Bishop - springer
-                case 'B': { result =  bishopTable[position]; }
+                case 'B': { result =  bishopTable[newPosition]; }
                 break;
                 //rook - tårn
-                case 'R': { result =  rookTable[position]; }
+                case 'R': { result =  rookTable[newPosition]; }
                 break;
                 //queen - dronning
-                case 'Q': {result =  queenTable[position]; }
+                case 'Q': {result =  queenTable[newPosition]; }
                 break;
                 //king - konge
-                case 'K': { result =  kingTable[position]; }
+                case 'K': { result =  kingTable[newPosition]; }
                 break;
                 default: {break; }
             }
