@@ -48,6 +48,13 @@ public class StaticEvalTest {
         char[] board = new char[64];
         StaticEvaluation eval = new StaticEvaluation();
 
+        int ourIndex = 45;
+        board[ourIndex] = 'P';
+
+        System.out.println(Math.floor((ourIndex/8)+8*(7-ourIndex%8)));
+
+
+
     }
 
 
