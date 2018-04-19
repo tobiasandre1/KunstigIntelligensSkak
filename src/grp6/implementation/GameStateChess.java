@@ -31,4 +31,16 @@ public class GameStateChess implements Node {
     public void setBoard(char[] board){
         this.board = board;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<8; i++){
+            for(int j=0; j<8; j++){
+                sb.append(board[7-i + 8*j]+" ");
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }
