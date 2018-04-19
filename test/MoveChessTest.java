@@ -6,10 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MoveChessTest {
-    @Test
-    public void firstTest() {
-        Assert.assertTrue(true);
-    }
 
     @Test
     public void testApply() {
