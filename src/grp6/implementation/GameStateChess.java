@@ -276,14 +276,14 @@ public class GameStateChess implements Node {
             if (board[i] == ('k')){
             List<Move> whiteKing = null;
             //whiteKing.clear();
-            if (whiteKing != null) {
+            if (whiteKing == null) {
                 return true;
             }
         }
         else if (board[i] ==('K') ) {
             List<Move> blackKing = null;
             //blackKing.clear();
-            if (blackKing != null) {
+            if (blackKing == null) {
                 return true;
             }
         }

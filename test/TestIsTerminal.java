@@ -15,8 +15,6 @@ public class TestIsTerminal {
         Assert.assertEquals(true, node.isTerminal());
 
         Assert.assertTrue(node.isTerminal());
-
-        // Assert.assertEquals(
     }
 
 }
