@@ -5,18 +5,16 @@ public class StaticEvaluation {
 
 
 
-    public  int calculateScores(char[] board){
+    public static  int calculateScores(char[] board, boolean isWhite){
 
- /*
-        int whitePlayer =  getMatericalCount(board, true)+ getPositionCount(board, true);
-        int blackPlayer =  getMatericalCount(board, false);
-*/
-        return 0;
+        int score = getMatericalCount(board, isWhite) + getPositionCount(board, isWhite);
+
+        return score ;
 
     }
 
     //metode der tæller alle brikkernes værdier
-    public  int getMatericalCount(char[] board, boolean isWhite){
+    public static int getMatericalCount(char[] board, boolean isWhite){
 
         int result = 0;
 
@@ -65,7 +63,7 @@ public class StaticEvaluation {
 
 
     //tæller summen af position af type.
-    public int getPositionCount(char[] board, boolean isWhite){
+    public static int getPositionCount(char[] board, boolean isWhite){
         int result =0;
 
         for (int i = 0; i < board.length; i++) {
@@ -80,7 +78,7 @@ public class StaticEvaluation {
 
 
 
-    private  int getScoreForPositionAndType(char pieceType, int position){
+    private static  int getScoreForPositionAndType(char pieceType, int position){
 
         int result = 0;
         //recalculate index as our array is represented differently
