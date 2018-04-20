@@ -19,7 +19,6 @@ public class GameStateChess implements Node {
     @Override
     public boolean isTerminal() {
 // Needs to be change for when Move interfaces is done and can be implemented correctly, at this point, the structure seems to be correct.
-        for (int i = 0; i < getMoves().size(); i++) {
             if (getMoves().contains('k')){
                 List<Move> whiteKing = getMoves();
                 if (whiteKing.isEmpty()) {
@@ -32,7 +31,6 @@ public class GameStateChess implements Node {
                     return true;
                 }
             }
-        }
         return false;
     }
 
