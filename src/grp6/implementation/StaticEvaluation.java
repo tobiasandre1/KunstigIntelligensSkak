@@ -132,7 +132,8 @@ public class StaticEvaluation {
         return result;
     }
 
-    public int getValue(int index){return pawnTable[index];};
+    public int getValue(int index){return pawnTable[index];}
+
     public static short[] pawnTable = new short[]{
             0,  0,  0,  0,  0,  0,  0,  0,
             50, 50, 50, 50, 50, 50, 50, 50,

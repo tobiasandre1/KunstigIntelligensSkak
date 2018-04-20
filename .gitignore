@@ -10,3 +10,5 @@ out/test/KunstigIntelligensSkak/
 out/
 
 *.iml
+
+*.class

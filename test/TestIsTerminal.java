@@ -7,7 +7,7 @@ import java.util.List;
 public class TestIsTerminal {
 
     @Test
-    public void testApply() {
+    public void testIsTerminal() {
         TestGameStates testdata = new TestGameStates();
         List<Node> nodes = testdata.getNodes();
         Node node = nodes.get(2); //Use Check mate position
