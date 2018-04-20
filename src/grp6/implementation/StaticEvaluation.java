@@ -24,6 +24,7 @@ public class StaticEvaluation {
             result += CalculatePieceValue(board[i]);
         }
         if(!isWhite) result = -result;
+
         return result;
     }
 
@@ -69,9 +70,9 @@ public class StaticEvaluation {
 
         for (int i = 0; i < board.length; i++) {
 
-            result += getScoreForPositionAndType(board[i],i,isWhite);
+            result += getScoreForPositionAndType(board[i],i);
         }
-
+        if(!isWhite) result = -result;
         return result;
     }
 
@@ -79,35 +80,56 @@ public class StaticEvaluation {
 
 
 
-    private  int getScoreForPositionAndType(char pieceType, int position, boolean isWhite){
+    private  int getScoreForPositionAndType(char pieceType, int position){
 
         int result = 0;
-       int newPosition =(int) Math.floor(position/8)+8*(7-position%8);
+        //recalculate index as our array is represented differently
+        int newPosition =(int) Math.floor(position/8)+8*(7-position%8);
 
-        if(isWhite) {
-            switch ((pieceType)) {
-                //pawn - bonde
-                case 'P': { result = pawnTable[newPosition]; }
-                break;
-                //Knight - knægt
-                case 'N': { result =  knightTable[newPosition]; }
-                break;
-                //Bishop - springer
-                case 'B': { result =  bishopTable[newPosition]; }
-                break;
-                //rook - tårn
-                case 'R': { result =  rookTable[newPosition]; }
-                break;
-                //queen - dronning
-                case 'Q': {result =  queenTable[newPosition]; }
-                break;
-                //king - konge
-                case 'K': { result =  kingTable[newPosition]; }
-                break;
-                default: {break; }
-            }
+            //mirror the scoretable
+         int   newPositionblack = (newPosition + 56) - ((newPosition / 8) * 16);
 
+        switch ((pieceType)) {
+            //pawn - bonde
+            case 'P': { result = pawnTable[newPosition]; }
+            break;
+            //Knight - knægt
+            case 'N': { result =  knightTable[newPosition]; }
+            break;
+            //Bishop - springer
+            case 'B': { result =  bishopTable[newPosition]; }
+            break;
+            //rook - tårn
+            case 'R': { result =  rookTable[newPosition]; }
+            break;
+            //queen - dronning
+            case 'Q': {result =  queenTable[newPosition]; }
+            break;
+            //king - konge
+            case 'K': { result =  kingTable[newPosition]; }
+            break;
+            case 'p': { result = -pawnTable[newPosition]; }
+            break;
+            //Knight - knægt
+            case 'n': { result =  -knightTable[newPositionblack]; }
+            break;
+            //Bishop - springer
+            case 'b': { result =  -bishopTable[newPositionblack]; }
+            break;
+            //rook - tårn
+            case 'r': { result =  -rookTable[newPositionblack]; }
+            break;
+            //queen - dronning
+            case 'q': {result =  -queenTable[newPositionblack]; }
+            break;
+            //king - konge
+            case 'k': { result =  -kingTable[newPositionblack]; }
+            break;
+
+            default: {break; }
         }
+
+
 
         return result;
     }

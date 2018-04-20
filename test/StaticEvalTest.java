@@ -48,11 +48,15 @@ public class StaticEvalTest {
         char[] board = new char[64];
         StaticEvaluation eval = new StaticEvaluation();
 
-        board[14] = 'R';
 
+        //given we are white this place would be 5
+        board[6] = 'R';
+
+        //this place is 10, but -10 if black
+        board[9] = 'r';
 
         int actual = eval.getPositionCount(board, true);
-        int expected = 10;
+        int expected = -5;
 
     Assert.assertEquals(expected,actual);
 
