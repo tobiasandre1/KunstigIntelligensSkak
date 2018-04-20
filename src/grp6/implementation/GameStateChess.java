@@ -140,8 +140,8 @@ public class GameStateChess implements Node {
     			}
     		}
     		else if(board[i] == p) {
-    			if(board[i+8]==null) {
-    				moves.add(new Move(from, i+8));
+    			if(board[i-8]==null) {
+    				moves.add(new Move(from, i-8));
     			}
     		}
     		
