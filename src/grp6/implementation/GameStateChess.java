@@ -16,6 +16,23 @@ public class GameStateChess implements Node {
 
     @Override
     public boolean isTerminal() {
+        //Needs to be change when getMoves gets updated.
+        for (int i = 0; i< board.length; i++) {
+            if (board[i] == ('k')){
+            List<Move> whiteKing = null;
+            //whiteKing.clear();
+            if (whiteKing != null) {
+                return true;
+            }
+        }
+        else if (board[i] ==('K') ) {
+            List<Move> blackKing = null;
+            //blackKing.clear();
+            if (blackKing != null) {
+                return true;
+            }
+        }
+        }
         return false;
     }
 
