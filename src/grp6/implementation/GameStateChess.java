@@ -8,8 +8,7 @@ import java.util.List;
 public class GameStateChess implements Node {
 
     char[] board = new char[65];
-    private class Move
-    {
+    private class Move{
     	int from, to;
     	
     	MoveCoordinate(from, to){
@@ -86,10 +85,9 @@ public class GameStateChess implements Node {
         	    		
         	    		}	
     			
-    			
     			}
     			
-    		}
+    		
     		else if(board[i] == r) { //rock
     			for( int j = 1; j<66) {
     				if(i%8 == j%8) {
@@ -264,18 +262,12 @@ public class GameStateChess implements Node {
 				moves.add(new Move(from, i+8));
 			}
 		}
-    	}
+    
+    	
         return moves;
-    }
+   
+        
+    }   
 
-
-    @Override
-    public boolean isTerminal() {
-        return false;
-    }
-
-    @Override
-    public int getHeuristicValue() {
-        return 0;
-    }
 }
+
