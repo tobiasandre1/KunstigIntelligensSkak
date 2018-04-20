@@ -3,15 +3,17 @@ package grp6.implementation;
 import grp6.interfaces.Move;
 import grp6.interfaces.Node;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameStateChess implements Node {
 
     private char[] board = new char[64];
-    private class Move
+
+    private class MoveCoordinate
     {
     	int from, to;
-    	MoveCoordinate(from, to){
+    	MoveCoordinate(int from, int to){
     	
     		this.from = from;
     		this.to = to;
@@ -22,12 +24,11 @@ public class GameStateChess implements Node {
     @Override
     public List<Move> getMoves() {
     	List moves = new ArrayList<Move>();
+    	/*
     	for (int i=1; i<66; i++){
-   
-    		
+
     		////BLACK 
-    		if (board[i] == k){// king
-    			
+    		if (board[i] == 'k'){// king
     				if(board[i-9] == null || board[i-9].isUpperCase()){
     				moves.add(new Move(from, i-9));
     				}    			
@@ -56,7 +57,7 @@ public class GameStateChess implements Node {
     		}
     			
     		
-    		else if(board[i] == q) { //queen
+    		else if(board[i] == 'q') { //queen
         			for( int j = 1; j<66) {
         				//rock part
         				if(i%8 == j%8) {
@@ -148,7 +149,7 @@ public class GameStateChess implements Node {
     		
     		/////////////////////////////////////white
     		
-    		else if(board[i] == K) {
+    		else if(board[i] == 'K') {
     			if(board[i-9]==null||board[i-9].isLowerCase()){
     				moves.add(new Move(from, i-9));
     				}    			
@@ -176,7 +177,7 @@ public class GameStateChess implements Node {
     		}
      		
 		
-		else if(board[i] == Q) { //queen
+		else if(board[i] == 'Q') { //queen
     			for( int j = 1; j<66) {
     				//rock part
     				if(i%8 == j%8 && (board[j]==null || board[j].isLowerCase()) {
@@ -209,7 +210,7 @@ public class GameStateChess implements Node {
 			
 			}
 			
-		}
+
 		else if(board[i] == r) { //rock
 			for( int j = 1; j<66) {
 				if(i%8 == j%8) {
@@ -263,8 +264,8 @@ public class GameStateChess implements Node {
 			if(board[i+8]==null) {
 				moves.add(new Move(from, i+8));
 			}
-		}
-    	}
+		}*/
+
         return moves;
     }
 
