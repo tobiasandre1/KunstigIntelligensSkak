@@ -19,7 +19,7 @@ public class GetMovesTest {
 
         System.out.println("SECOND GAME");
         state = (GameStateChess) test.getNodes().get(2);
-        moves = state.getMoves(false);
+        moves = state.getMoves(true);
         for(Move m : moves){
             System.out.println(m.toString());
         }
