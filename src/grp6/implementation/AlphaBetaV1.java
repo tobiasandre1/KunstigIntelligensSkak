@@ -33,7 +33,7 @@ public class AlphaBetaV1 implements AlphaBeta{
         Move current = null;
         if(isMaximizer){
             //v = -2147483640;
-            for(Move m : node.getMoves()){
+            for(Move m : node.getMoves(isMaximizer)){
                 current = m;
                 a = max(a, alphabeta(m.apply(node), depth-1, a, b, !isMaximizer));
                 if(b <= a){
@@ -45,7 +45,7 @@ public class AlphaBetaV1 implements AlphaBeta{
             return a;
         }
         else{
-            for(Move m : node.getMoves()){
+            for(Move m : node.getMoves(isMaximizer)){
                 current = m;
                 b = min(b, alphabeta(m.apply(node), depth-1, a, b, !isMaximizer));
                 if(b <= a){
