@@ -301,30 +301,16 @@ public class GameStateChess implements Node {
     }
 
     @Override
-    public boolean isTerminal() {
-        //Needs to be change when getMoves gets updated.
-        for (int i = 0; i< board.length; i++) {
-            if (board[i] == ('k')){
-            List<Move> whiteKing = null;
-            //whiteKing.clear();
-            if (whiteKing == null) {
-                return true;
-            }
-        }
-        else if (board[i] ==('K') ) {
-            List<Move> blackKing = null;
-            //blackKing.clear();
-            if (blackKing == null) {
-                return true;
-            }
-        }
+    public boolean isTerminal(boolean isWhite) {
+        if(getMoves(isWhite).size() < 1){
+            return true;
         }
         return false;
     }
 
     @Override
-    public int getHeuristicValue() {
-        return 0;
+    public int getStaticEvaluation() {
+        return StaticEvaluation.getMaterialCount(board);
     }
 
     public char[] getBoard(){

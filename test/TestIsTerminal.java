@@ -12,9 +12,9 @@ public class TestIsTerminal {
         List<Node> nodes = testdata.getNodes();
         Node node = nodes.get(2); //Use Check mate position
 
-        Assert.assertEquals(true, node.isTerminal());
+        Assert.assertEquals(true, node.isTerminal(true));
 
-        Assert.assertTrue(node.isTerminal());
+        Assert.assertTrue(node.isTerminal(true));
     }
 
 }
