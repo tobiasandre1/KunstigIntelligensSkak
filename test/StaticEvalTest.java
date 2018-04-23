@@ -40,7 +40,11 @@ public class StaticEvalTest {
 
 
         //(8*100)+(2*320)+(2*335)+(2*500)+(1*900)+20000 = 24010
-        Assert.assertEquals(0, eval.getMatericalCount(board,true));
+        Assert.assertEquals(0, StaticEvaluation.getMaterialCount(board));
+
+        board[24] = ' ';
+
+        Assert.assertEquals(-900, StaticEvaluation.getMaterialCount(board));
     }
 
     @Test
@@ -55,10 +59,21 @@ public class StaticEvalTest {
         //this place is 10, but -10 if black
         board[9] = 'r';
 
-        int actual = eval.getPositionCount(board, true);
+        int actual = StaticEvaluation.getPositionCount(board);
         int expected = -5;
 
-    Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected,actual);
+
+    }
+
+    @Test
+    public void testCalculateScores(){
+        TestGameStates test = new TestGameStates();
+
+        GameStateChess state = (GameStateChess) test.getNodes().get(1);
+
+        System.out.println(state);
+        Assert.assertEquals(0, state.getStaticEvaluation());
 
     }
 

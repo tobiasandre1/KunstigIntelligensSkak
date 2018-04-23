@@ -4,9 +4,6 @@ import grp6.interfaces.AlphaBeta;
 import grp6.interfaces.Move;
 import grp6.interfaces.Node;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -26,14 +23,14 @@ public class AlphaBetaV1 implements AlphaBeta{
     }
 
     public int alphabeta(Node node, int depth, int a, int b, boolean isMaximizer) {
-        if(depth == 0 || node.isTerminal()){
-            return node.getHeuristicValue();
+        if(depth == 0 || node.isTerminal(isMaximizer)){
+            return node.getStaticEvaluation();
         }
 
         Move current = null;
         if(isMaximizer){
             //v = -2147483640;
-            for(Move m : node.getMoves()){
+            for(Move m : node.getMoves(isMaximizer)){
                 current = m;
                 a = max(a, alphabeta(m.apply(node), depth-1, a, b, !isMaximizer));
                 if(b <= a){
@@ -45,7 +42,7 @@ public class AlphaBetaV1 implements AlphaBeta{
             return a;
         }
         else{
-            for(Move m : node.getMoves()){
+            for(Move m : node.getMoves(isMaximizer)){
                 current = m;
                 b = min(b, alphabeta(m.apply(node), depth-1, a, b, !isMaximizer));
                 if(b <= a){

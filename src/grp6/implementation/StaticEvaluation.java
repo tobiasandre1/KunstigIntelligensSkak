@@ -2,26 +2,22 @@ package grp6.implementation;
 
 public class StaticEvaluation {
 
+    public static  int calculateScores(char[] board){
 
-
-
-    public static  int calculateScores(char[] board, boolean isWhite){
-
-        int score = getMatericalCount(board, isWhite) + getPositionCount(board, isWhite);
+        int score = getMaterialCount(board) + getPositionCount(board);
 
         return score ;
 
     }
 
     //metode der tæller alle brikkernes værdier
-    public static int getMatericalCount(char[] board, boolean isWhite){
+    public static int getMaterialCount(char[] board){
 
         int result = 0;
 
         for (int i = 0; i < board.length; i++) {
             result += CalculatePieceValue(board[i]);
         }
-        if(!isWhite) result = -result;
 
         return result;
     }
@@ -63,14 +59,14 @@ public class StaticEvaluation {
 
 
     //tæller summen af position af type.
-    public static int getPositionCount(char[] board, boolean isWhite){
+    public static int getPositionCount(char[] board){
         int result =0;
 
         for (int i = 0; i < board.length; i++) {
 
             result += getScoreForPositionAndType(board[i],i);
         }
-        if(!isWhite) result = -result;
+        //if(!isWhite) result = -result;
         return result;
     }
 
@@ -85,7 +81,7 @@ public class StaticEvaluation {
         int newPosition =(int) Math.floor(position/8)+8*(7-position%8);
 
             //mirror the scoretable
-         int   newPositionblack = (newPosition + 56) - ((newPosition / 8) * 16);
+        int   newPositionblack = (newPosition + 56) - ((newPosition / 8) * 16);
 
         switch ((pieceType)) {
             //pawn - bonde
@@ -132,7 +128,8 @@ public class StaticEvaluation {
         return result;
     }
 
-    public int getValue(int index){return pawnTable[index];};
+    public int getValue(int index){return pawnTable[index];}
+
     public static short[] pawnTable = new short[]{
             0,  0,  0,  0,  0,  0,  0,  0,
             50, 50, 50, 50, 50, 50, 50, 50,
