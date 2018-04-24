@@ -65,13 +65,13 @@ public class GameStateChess implements Node {
                     for(int j : allmove){
                         prev = i;
                         end = j+i;
-                        while(end >= 0 && end < 64){
+                        while(insideNotKing(end)){
                             distance = Math.abs(end%8-prev%8)+Math.abs(Math.floor(end/8)-Math.floor(prev/8));
                             if(distance > 2){
                                 break;
                             }
 
-                            tookPiece = ((Character.isUpperCase(board[end]) && !isWhitePiece)||(Character.isLowerCase(board[end]) && isWhitePiece));
+                            tookPiece = tookPiece(end, isWhitePiece);
                             //We start by checking if we are allowed to take the piece at the end of our move
                             if(tookPiece || board[end]==' ') {
                                 moveToAdd = new MoveChess(i, end, board[i], board[end], false);
@@ -104,12 +104,12 @@ public class GameStateChess implements Node {
                     for(int j : allmove){
                         prev = i;
                         end = j+i;
-                        while(end >= 0 && end < 64){
+                        while(insideNotKing(end)){
                             distance = Math.abs(end%8-prev%8)+Math.abs(Math.floor(end/8)-Math.floor(prev/8));
                             if(distance > 2){
                                 break;
                             }
-                            tookPiece = ((Character.isUpperCase(board[end]) && !isWhitePiece)||(Character.isLowerCase(board[end]) && isWhitePiece));
+                            tookPiece = tookPiece(end, isWhitePiece);
                             //We start by checking if we are allowed to take the piece at the end of our move
                             if(tookPiece || board[end]==' ') {
                                 moveToAdd = new MoveChess(i, end, board[i], board[end], false);
@@ -143,12 +143,12 @@ public class GameStateChess implements Node {
                     for(int j : crossmove){
                         prev = i;
                         end = j+i;
-                        while(end >= 0 && end < 64){
+                        while(insideNotKing(end)){
                             distance = Math.abs(end%8-prev%8)+Math.abs(Math.floor(end/8)-Math.floor(prev/8));
                             if(distance > 2){
                                 break;
                             }
-                            tookPiece = ((Character.isUpperCase(board[end]) && !isWhitePiece)||(Character.isLowerCase(board[end]) && isWhitePiece));
+                            tookPiece = tookPiece(end, isWhitePiece);
                             //We start by checking if we are allowed to take the piece at the end of our move
                             if(tookPiece || board[end]==' ') {
                                 moveToAdd = new MoveChess(i, end, board[i], board[end], false);
@@ -182,12 +182,12 @@ public class GameStateChess implements Node {
                     for(int j : knightmove) {
                         prev = i;
                         end = j+i;
-                        while(end >= 0 && end < 64){
+                        while(insideNotKing(end)){
                             distance = Math.abs(end%8-prev%8)+Math.abs(Math.floor(end/8)-Math.floor(prev/8));
                             if(distance > 3){
                                 break;
                             }
-                            tookPiece = ((Character.isUpperCase(board[end]) && !isWhitePiece) || (Character.isLowerCase(board[end]) && isWhitePiece));
+                            tookPiece = tookPiece(end, isWhitePiece);
                             //We start by checking if we are allowed to take the piece at the end of our move
                             if (tookPiece || board[end] == ' ') {
                                 moveToAdd = new MoveChess(i, end, board[i], board[end], false);
@@ -211,12 +211,12 @@ public class GameStateChess implements Node {
                     for(int j : alongmove){
                         prev = i;
                         end = j+i;
-                        while(end >= 0 && end < 64){
+                        while(insideNotKing(end)){
                             distance = Math.abs(end%8-prev%8)+Math.abs(Math.floor(end/8)-Math.floor(prev/8));
                             if(distance > 1){
                                 break;
                             }
-                            tookPiece = ((Character.isUpperCase(board[end]) && !isWhitePiece)||(Character.isLowerCase(board[end]) && isWhitePiece));
+                            tookPiece = tookPiece(end, isWhitePiece);
                             //We start by checking if we are allowed to take the piece at the end of our move
                             if(tookPiece || board[end]==' ') {
                                 moveToAdd = new MoveChess(i, end, board[i], board[end], false);
@@ -256,21 +256,24 @@ public class GameStateChess implements Node {
                     }
 
                     end = i+factor;
-                    if(board[end] == ' ' && end >= 0 && end < 64) {
-                        pawnMoves.add(new MoveChess(i, end, board[i], board[end], false));
-                        //This part is for the double move at the start of the game
-                        if ((i % 8 == 1 && isWhite) || (i % 8 == 6 && !isWhite)) {
-                            end += factor;
-                            if(board[end] == ' ' && end >= 0 && end < 64) {
-                                pawnMoves.add(new MoveChess(i, end, board[i], board[end], false));
+                    if(end >= 0 && end < 64) {
+                        if(board[end] == ' ') {
+                            pawnMoves.add(new MoveChess(i, end, board[i], board[end], false));
+                            //This part is for the double move at the start of the game
+                            if ((i % 8 == 1 && isWhite) || (i % 8 == 6 && !isWhite)) {
+                                end += factor;
+                                if (board[end] == ' ' && end >= 0 && end < 64) {
+                                    pawnMoves.add(new MoveChess(i, end, board[i], board[end], false));
+                                }
                             }
                         }
                     }
 
                     for(int j: pawnattack){
                         end = i+j*factor;
-                        if(end >= 0 && end < 64) {
-                            tookPiece = ((Character.isUpperCase(board[end]) && !isWhitePiece) || (Character.isLowerCase(board[end]) && isWhitePiece));
+                        if(insideNotKing(end)) {
+
+                            tookPiece = tookPiece(end, isWhitePiece);
                             if (tookPiece) {
                                 pawnMoves.add(new MoveChess(i, end, board[i], board[end], false));
                             }
@@ -310,7 +313,7 @@ public class GameStateChess implements Node {
 
     @Override
     public int getStaticEvaluation() {
-        return StaticEvaluation.getMaterialCount(board);
+        return StaticEvaluation.calculateScores(board);
     }
 
     public char[] getBoard(){
@@ -409,5 +412,21 @@ public class GameStateChess implements Node {
             sb.append("\n");
         }
         return sb.toString();
+    }
+
+    private boolean insideNotKing(int pos){
+        if(pos < 64 && pos >= 0){
+            if(board[pos] != 'K' && board[pos] != 'k'){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean tookPiece(int end, boolean isWhitePiece){
+        if((Character.isUpperCase(board[end]) && !isWhitePiece) || (Character.isLowerCase(board[end]) && isWhitePiece)){
+            return true;
+        }
+        return false;
     }
 }
