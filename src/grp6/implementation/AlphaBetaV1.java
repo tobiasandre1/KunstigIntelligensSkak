@@ -12,17 +12,43 @@ public class AlphaBetaV1 implements AlphaBeta{
     //List<Node> path;
     private Move[] path;
     private int[] scores;
+    private Move[] temp;
+    double starttime;
 
 
     @Override
     public int ab(Node node, int depth, int a, int b, boolean isMaximizer) {
         //path = new ArrayList<>();
-        path = new Move[depth];
-        scores = new int[depth];
-        return alphabeta(node, depth, a, b, isMaximizer);
+
+
+        int result = -1000000;
+        for(int i = depth; i <= depth; i++){
+            path = new Move[depth];
+            temp = new Move[depth];
+            scores = new int[depth];
+            starttime = System.currentTimeMillis();
+            try{
+                result = alphabeta(node, depth, a, b, isMaximizer);
+                temp = path;
+            } catch (Exception e){
+                break;
+            }
+
+
+        }
+        path = temp;
+        return result;
+
+        //return alphabeta(node, depth, a, b, isMaximizer);
     }
 
-    public int alphabeta(Node node, int depth, int a, int b, boolean isMaximizer) {
+    public int alphabeta(Node node, int depth, int a, int b, boolean isMaximizer) throws Exception {
+        /*
+        double curTime = System.currentTimeMillis();
+        if(curTime-starttime > 5000.0){
+            throw new Exception("Took too much time");
+        }*/
+
         if(depth == 0 || node.isTerminal(isMaximizer)){
             return node.getStaticEvaluation();
         }
