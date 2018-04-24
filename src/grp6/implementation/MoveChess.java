@@ -3,17 +3,9 @@ package grp6.implementation;
 import grp6.interfaces.Move;
 import grp6.interfaces.Node;
 
-public class MoveChess implements Move {
+import java.util.Comparator;
 
-    int startPos;       //Start position of the moving piece according to our representation
-    int endPos;         //End position of the moving piece according to our representation
-    char movingPiece;   //Used to represent which piece is moving, is technically made redundant by startpos and endpos, but might be useful if we validate moves
-    char takenPiece;    //Used to store any taken pieces
-    boolean special;    //Used to represent that this is a special move, like reshuffle (rokade) or moving to the end
-
-    public MoveChess(){
-
-    }
+public class MoveChess extends Move {
 
     public MoveChess(int startPos, int endPos, char movingPiece, char takenPiece, boolean special){
         this.startPos = startPos;
