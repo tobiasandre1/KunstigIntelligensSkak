@@ -14,30 +14,29 @@ public class TestAlphaBeta {
 
         GameStateChess state = (GameStateChess) test.getNodes().get(1);
 
-
-        //Start of white move
-        chessAI.ab(state, 3, -270000, 27000, true); //Initial move with white
-        Move[] path = chessAI.getPath();
-        MoveChess move = (MoveChess) path[path.length-1];
-        System.out.println(move);
-        state = (GameStateChess) move.apply(state);
-        //End of initial white move
+        Move[] path;
+        int[] scores;
+        MoveChess move;
 
         //Continued play...
         boolean isWhite;
-        for(int i=0; i<40; i++){
+        for(int i=1; i<12; i++){
             if(i%2 == 1){
                 isWhite = true;
             } else {
                 isWhite = false;
             }
 
-            chessAI.ab(state, 3, -270000, 27000, isWhite);
+            chessAI.ab(state, 4, -500000, 500000, isWhite);
             path = chessAI.getPath();
             move = (MoveChess) path[path.length-1];
-            System.out.println(move);
+            scores = chessAI.getScores();
             state = (GameStateChess) move.apply(state);
+
+            System.out.println(move);
+            //System.out.println(scores);
             System.out.println(state);
+
 
         }
 

@@ -27,30 +27,50 @@ public class AlphaBetaV1 implements AlphaBeta{
             return node.getStaticEvaluation();
         }
 
+        int v;
         Move current = null;
+        Move best = null;
         if(isMaximizer){
             //v = -2147483640;
             for(Move m : node.getMoves(isMaximizer)){
                 current = m;
-                a = max(a, alphabeta(m.apply(node), depth-1, a, b, !isMaximizer));
+                v = alphabeta(m.apply(node), depth-1, a, b, !isMaximizer);
+
+                if(a < v){
+                    a=v;
+                    best = current;
+                }
+                //a = max(a,v);
                 if(b <= a){
                     break;
                 }
             }
             scores[depth-1] = a;
-            path[depth-1] = current;
+            if(best != null){
+                path[depth-1] = best;
+            }
+            //System.out.println(a);
             return a;
         }
         else{
             for(Move m : node.getMoves(isMaximizer)){
                 current = m;
-                b = min(b, alphabeta(m.apply(node), depth-1, a, b, !isMaximizer));
+                v = alphabeta(m.apply(node), depth-1, a, b, !isMaximizer);
+
+                if(b > v){
+                    b = v;
+                    best = current;
+                }
+
                 if(b <= a){
                     break;
                 }
             }
             scores[depth-1] = b;
-            path[depth-1] = current;
+            if(best != null){
+                path[depth-1] = best;
+            }
+            //System.out.println(b);
             return b;
         }
     }

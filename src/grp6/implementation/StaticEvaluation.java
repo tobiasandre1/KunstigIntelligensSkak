@@ -2,9 +2,15 @@ package grp6.implementation;
 
 public class StaticEvaluation {
 
-    public static  int calculateScores(char[] board){
+    public static  int calculateScores(GameStateChess state){
 
-        int score = getMaterialCount(board) + getPositionCount(board);
+        int score = getMaterialCount(state.getBoard())*10 + getPositionCount(state.getBoard());
+        if(state.isTerminal(true)){
+            score += -100000;
+        }
+        if(state.isTerminal(false)){
+            score += 100000;
+        }
 
         return score ;
 
@@ -16,14 +22,14 @@ public class StaticEvaluation {
         int result = 0;
 
         for (int i = 0; i < board.length; i++) {
-            result += CalculatePieceValue(board[i]);
+            result += calculatePieceValue(board[i]);
         }
 
         return result;
     }
 
     //udregner ens brik værdi
-    private static int CalculatePieceValue(char pieceType) {
+    public static int calculatePieceValue(char pieceType) {
 
         switch ((pieceType)) {
             //pawn - bonde
@@ -74,7 +80,7 @@ public class StaticEvaluation {
 
 
 
-    private static  int getScoreForPositionAndType(char pieceType, int position){
+    public static int getScoreForPositionAndType(char pieceType, int position){
 
         int result = 0;
         //recalculate index as our array is represented differently
@@ -102,7 +108,7 @@ public class StaticEvaluation {
             //king - konge
             case 'K': { result =  kingTable[newPosition]; }
             break;
-            case 'p': { result = -pawnTable[newPosition]; }
+            case 'p': { result = -pawnTable[newPositionblack]; }
             break;
             //Knight - knægt
             case 'n': { result =  -knightTable[newPositionblack]; }

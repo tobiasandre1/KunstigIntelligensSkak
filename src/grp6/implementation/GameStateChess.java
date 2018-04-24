@@ -4,6 +4,7 @@ import grp6.interfaces.Move;
 import grp6.interfaces.Node;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GameStateChess implements Node {
@@ -40,15 +41,18 @@ public class GameStateChess implements Node {
         }
 
         //If it is the first time running getMoves, then initialize the Lists.
-        whiteMoves = new ArrayList<Move>();
-        blackMoves = new ArrayList<Move>();
+        if(isWhite){
+            whiteMoves = new ArrayList<>();
+        } else {
+            blackMoves = new ArrayList<>();
+        }
 
         List<Move> pawnMoves = new ArrayList<>();
 
         //Keep track of the current piece and whether the current piece is white
         char current;
         boolean isWhitePiece;
-        Move moveToAdd = null;
+        Move moveToAdd;
         int end, prev;
         double distance;
         GameStateChess check;
@@ -297,8 +301,10 @@ public class GameStateChess implements Node {
         }
 
         if(isWhite){
+            Collections.sort(whiteMoves);
             return whiteMoves;
         } else {
+            Collections.sort(blackMoves);
             return blackMoves;
         }
     }
@@ -313,7 +319,7 @@ public class GameStateChess implements Node {
 
     @Override
     public int getStaticEvaluation() {
-        return StaticEvaluation.calculateScores(board);
+        return StaticEvaluation.calculateScores(this);
     }
 
     public char[] getBoard(){
