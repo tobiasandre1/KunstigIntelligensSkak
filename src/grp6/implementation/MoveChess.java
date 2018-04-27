@@ -42,8 +42,8 @@ public class MoveChess extends Move {
         sb.append(letters[(int)Math.floor(endPos/8)]);
         sb.append(endPos%8+1);
 
-        //return sb.toString();
+        return sb.toString();
 
-        return startPos + " " + endPos + " " + movingPiece + " " + takenPiece;
+      //  return startPos + " " + endPos + " " + movingPiece + " " + takenPiece;
     }
 }
