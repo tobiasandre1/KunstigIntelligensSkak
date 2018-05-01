@@ -41,6 +41,28 @@ public class TestGameStates {
             {' ',' ',' ',' ',' ',' ',' ',' '}
     };
 
+    private char[][] notincheck = { //3
+            {'r','n','b','q','k','b','n','r'},
+            {'p','p','p','p',' ','p','p','p'},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ','p',' ',' ','Q'},
+            {' ',' ',' ',' ','P',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {'P','P','P','P',' ','P','P','P'},
+            {'R','N','B',' ','K','B','N','R'}
+    };
+
+    private char[][] shuffleandenpassant = { //4
+            {'r',' ',' ',' ','k',' ',' ','r'},
+            {'p',' ','p','p',' ','p','p','p'},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ','p','P',' ','Q'},
+            {' ','p','P',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {'P','P',' ','P',' ','P','P','P'},
+            {'R',' ',' ',' ','K',' ',' ','R'}
+    };
+
 
     public TestGameStates(){
         nodes = new ArrayList<>();
@@ -48,6 +70,8 @@ public class TestGameStates {
         nodes.add(makeboard(empty)); //number 0
         nodes.add(makeboard(start)); //1
         nodes.add(makeboard(checkmate)); //2
+        nodes.add(makeboard(notincheck)); //3
+        nodes.add(makeboard(shuffleandenpassant)); //4
 
     }
 

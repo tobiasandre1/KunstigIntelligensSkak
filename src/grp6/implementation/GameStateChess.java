@@ -380,6 +380,9 @@ public class GameStateChess implements Node {
                 if(distance > 2){
                     break;
                 }
+                if(Character.isUpperCase(board[end]) && isWhite || Character.isLowerCase(board[end]) && !isWhite){
+                    break;
+                }
                 //System.out.println(t + " " + board[t]);
                 //We do the same, but for the queen and bishop attack
                 if(((board[end]=='q' || board[end]=='b') && isWhite) || ((board[end]=='Q' || board[end]=='B') && !isWhite)){
@@ -396,6 +399,9 @@ public class GameStateChess implements Node {
             while(end<64 && end>=0){
                 distance = Math.abs(end%8-prev%8)+Math.abs(Math.floor(end/8)-Math.floor(prev/8));
                 if(distance > 1){
+                    break;
+                }
+                if(Character.isUpperCase(board[end]) && isWhite || Character.isLowerCase(board[end]) && !isWhite){
                     break;
                 }
                 //We do the same, but for the queen and bishop attack

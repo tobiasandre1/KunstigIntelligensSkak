@@ -9,10 +9,12 @@ public class isInCheckTest {
         TestGameStates test = new TestGameStates();
         GameStateChess state1 = (GameStateChess) test.getNodes().get(1);
         GameStateChess state2 = (GameStateChess) test.getNodes().get(2);
+        GameStateChess state3 = (GameStateChess) test.getNodes().get(3);
 
         System.out.println(state1);
 
         Assert.assertEquals(false, state1.isInCheck(true));
         Assert.assertEquals(true, state2.isInCheck(true));
+        Assert.assertEquals(false, state3.isInCheck(false));
     }
 }

@@ -22,10 +22,50 @@ public class MoveChess extends Move {
         if(state instanceof GameStateChess){
             GameStateChess game = new GameStateChess((GameStateChess) state);
             char[] board = game.getBoard();
-            if(!special) {
-                board[startPos] = ' ';
-                board[endPos] = movingPiece;
+
+            //Normal move
+            board[startPos] = ' ';
+            board[endPos] = movingPiece;
+
+
+            //Shuffles
+            if(movingPiece == 'K' && startPos == 32){
+                switch (endPos){
+                    case 48:
+                        board[56] = ' ';
+                        board[40] = 'R';
+                        break;
+                    case 8:
+                        board[0] = ' ';
+                        board[16] = 'R';
+                }
             }
+            if(movingPiece == 'k' && startPos == 39){
+                switch (endPos){
+                    case 55:
+                        board[63] = ' ';
+                        board[47] = 'r';
+                        break;
+                    case 15:
+                        board[7] = ' ';
+                        board[23] = 'r';
+                }
+            }
+
+            //En passant
+            if(movingPiece == 'P' && endPos%8==5){
+                if(board[endPos-1] == 'p' && takenPiece == ' '){
+                    board[endPos-1] = ' ';
+                    takenPiece = 'p';
+                }
+            }
+            if(movingPiece == 'p' && endPos%8==2){
+                if(board[endPos+1] == 'P' && takenPiece == ' '){
+                    board[endPos+1] = ' ';
+                    takenPiece = 'P';
+                }
+            }
+
             game.setBoard(board);
             return game;
         }
