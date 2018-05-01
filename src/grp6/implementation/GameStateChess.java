@@ -300,12 +300,17 @@ public class GameStateChess implements Node {
             }
         }
 
+
         if(isWhite){
+            return Sort.sortList(whiteMoves, isWhite);
+            /*
             Collections.sort(whiteMoves);
-            return whiteMoves;
+            return whiteMoves;*/
         } else {
+            /*
             Collections.sort(blackMoves);
-            return blackMoves;
+            return blackMoves;*/
+            return Sort.sortList(blackMoves, !isWhite);
         }
     }
 
@@ -388,7 +393,10 @@ public class GameStateChess implements Node {
                 if(((board[end]=='q' || board[end]=='b') && isWhite) || ((board[end]=='Q' || board[end]=='B') && !isWhite)){
                     //System.out.println("waat");
                     return true;
+                } else if(board[end] != ' '){
+                    break;
                 }
+
                 prev = end;
                 end += m;
             }
@@ -407,7 +415,10 @@ public class GameStateChess implements Node {
                 //We do the same, but for the queen and bishop attack
                 if(((board[end]=='q' || board[end]=='r') && isWhite) || ((board[end]=='Q' || board[end]=='R') && !isWhite)){
                     return true;
+                } else if(board[end] != ' '){
+                    break;
                 }
+
                 end += m;
             }
         }

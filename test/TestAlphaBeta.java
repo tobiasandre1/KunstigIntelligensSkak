@@ -29,6 +29,12 @@ public class TestAlphaBeta {
 
             chessAI.ab(state, 4, -500000, 500000, isWhite);
             path = chessAI.getPath();
+
+            /*
+            for(Move m : path){
+                System.out.println(m);
+            }*/
+
             move = (MoveChess) path[path.length-1];
             scores = chessAI.getScores();
             state = (GameStateChess) move.apply(state);
