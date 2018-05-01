@@ -46,7 +46,7 @@ public class Main {
             System.out.println("You chose black");
         }
 
-        System.out.println("Type in the desired depth for AB pruning:");
+        System.out.print("Type in the desired depth for AB pruning:");
         int depth;
         try {
             depth = Integer.parseInt(input.nextLine());
