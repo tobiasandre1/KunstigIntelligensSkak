@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Node {
 
-    List<Node> getChildren(); //Generate possible new gamestates
-    boolean isTerminal(); //Check if game is over
-    int getHeuristicValue();
+    List<Move> getMoves(boolean isWhite); //Generate all legal moves for the current gamestate (for alphabeta)
+    boolean isTerminal(boolean isWhite); //Check if game is over (checkmate)
+    int getStaticEvaluation(); //Get static evaluation of game board
 }

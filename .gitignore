@@ -1,0 +1,14 @@
+
+\.idea/workspace\.xml
+
+\.idea/
+
+out/production/KunstigIntelligensSkak/grp6/implementation/
+
+out/test/KunstigIntelligensSkak/
+
+out/
+
+*.iml
+
+*.class
