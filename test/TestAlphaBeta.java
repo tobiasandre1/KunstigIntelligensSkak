@@ -20,7 +20,7 @@ public class TestAlphaBeta {
 
         //Continued play...
         boolean isWhite;
-        for(int i=1; i<12; i++){
+        for(int i=1; i<15; i++){
             if(i%2 == 1){
                 isWhite = true;
             } else {

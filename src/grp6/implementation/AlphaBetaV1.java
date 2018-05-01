@@ -28,12 +28,14 @@ public class AlphaBetaV1 implements AlphaBeta{
             scores = new int[depth];
             starttime = System.currentTimeMillis();
             result = alphabeta(node, depth, a, b, isMaximizer);
+            /*
             try{
 
                 temp = path;
             } catch (Exception e){
+                e.printStackTrace();
                 break;
-            }
+            }*/
 
 
         }

@@ -46,38 +46,57 @@ public class Main {
             System.out.println("You chose black");
         }
         //
+        String msg ="";
         while (!state.isTerminal(isAIWhite)) {
+            if(msg != ""){
+                System.out.println(msg);
+                msg = "";
+            }
 
             if (!isAIturn) {
                 //our move
                 System.out.print("Enter move: ");
                 playerMove = input.nextLine();
                 //translate to our board representation
-                transPlayerMove = translateMove(playerMove);
-                //split stuff
-                String[] parts = transPlayerMove.split("-");
+                try {
+                    transPlayerMove = translateMove(playerMove);
+                    //split stuff
+                    String[] parts = transPlayerMove.split("-");
 
-                int startPos = Integer.valueOf(parts[0]);
-                int endPos = Integer.valueOf(parts[1]);
-                char mPiece = state.getBoard()[startPos];
+                    int startPos = Integer.valueOf(parts[0]);
+                    int endPos = Integer.valueOf(parts[1]);
+                    char mPiece = state.getBoard()[startPos];
 
-                move = new MoveChess(startPos, endPos, mPiece, ' ', false);
-                state = (GameStateChess) move.apply(state);
+                    move = new MoveChess(startPos, endPos, mPiece, ' ', false);
+                    state = (GameStateChess) move.apply(state);
+                } catch (Exception e){
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("Something went wrong \n");
+
+                    for(StackTraceElement element : e.getStackTrace()){
+                        sb.append(element.toString()+"\n");
+                    }
+                    msg = sb.toString();
+
                 }
 
-            //AIs move
-            chessAI.ab(state, 4, -500000, 500000, isAIWhite);
-            path = chessAI.getPath();
-            move = (MoveChess) path[path.length - 1];
-            state = (GameStateChess) move.apply(state);
-            isAIturn = false;
-            System.out.println(state);
-            System.out.println();
+            }
+            if(msg == "") {
+                //AIs move
+                chessAI.ab(state, 4, -500000, 500000, isAIWhite);
+                path = chessAI.getPath();
+                move = (MoveChess) path[path.length - 1];
+                state = (GameStateChess) move.apply(state);
+                isAIturn = false;
+                System.out.println(move);
+                System.out.println(state);
+                System.out.println();
+            }
         }
     }
 
         //tramslates the move from normal representation to our
-    public static String translateMove(String move){
+    public static String translateMove(String move) throws Exception{
         int startCol = colTranslate(move,0);
         int endCol = colTranslate(move,2);
 
@@ -87,7 +106,7 @@ public class Main {
     }
 
 
-    public static int colTranslate(String move, int index) {
+    public static int colTranslate(String move, int index) throws Exception {
         int a = 0;
         switch (move.charAt(index)) {
             case 'a':
