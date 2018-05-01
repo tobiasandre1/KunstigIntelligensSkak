@@ -63,6 +63,17 @@ public class TestGameStates {
             {'R',' ',' ',' ','K',' ',' ','R'}
     };
 
+    private char[][] pawncheck = { //5
+            {'r',' ',' ',' ','k',' ',' ','r'},
+            {'p',' ','p','P',' ','p','p','p'},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ','p','P',' ','Q'},
+            {' ','p','P',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' ',' '},
+            {'P','P',' ','p',' ','P','P','P'},
+            {'R',' ',' ',' ','K',' ',' ','R'}
+    };
+
 
     public TestGameStates(){
         nodes = new ArrayList<>();
@@ -72,6 +83,7 @@ public class TestGameStates {
         nodes.add(makeboard(checkmate)); //2
         nodes.add(makeboard(notincheck)); //3
         nodes.add(makeboard(shuffleandenpassant)); //4
+        nodes.add(makeboard(pawncheck)); //5
 
     }
 

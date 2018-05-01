@@ -363,9 +363,9 @@ public class GameStateChess implements Node {
                 }
             }
         }
-        int factor = 1; //Needs to be the opposite of the pawn's normal attack since we are looking the other way
+        int factor = -1; //Needs to be the opposite of the pawn's normal attack since we are looking the other way
         if(isWhite){
-            factor = -1;
+            factor = 1;
         }
         for(int m : pawnattack){
             end = pos + (m*factor);
