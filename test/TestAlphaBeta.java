@@ -36,7 +36,7 @@ public class TestAlphaBeta {
             }*/
 
             move = (MoveChess) path[path.length-1];
-            scores = chessAI.getScores();
+            //scores = chessAI.getScores();
             state = (GameStateChess) move.apply(state);
 
             System.out.println(move);

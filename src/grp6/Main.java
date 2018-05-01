@@ -39,12 +39,28 @@ public class Main {
         if (playerColor.equals("w")) {
             isAIWhite = false;
             System.out.println("You chose white.");
-            System.out.println(state);
+            //System.out.println(state);
         } else {
             isAIWhite = true;
             isAIturn = true;
             System.out.println("You chose black");
         }
+
+        System.out.println("Type in the desired depth for AB pruning:");
+        int depth;
+        try {
+            depth = Integer.parseInt(input.nextLine());
+        } catch (Exception e){
+            System.out.println("Could not parse int, default depth of 3 selected...");
+            e.printStackTrace();
+            depth = 3;
+        }
+
+        if(!isAIWhite){
+            System.out.println(state);
+        }
+
+
         //
         String msg ="";
         while (!state.isTerminal(isAIWhite)) {
@@ -83,7 +99,7 @@ public class Main {
             }
             if(msg == "") {
                 //AIs move
-                chessAI.ab(state, 4, -500000, 500000, isAIWhite);
+                chessAI.ab(state, depth, -500000, 500000, isAIWhite);
                 path = chessAI.getPath();
                 move = (MoveChess) path[path.length - 1];
                 state = (GameStateChess) move.apply(state);

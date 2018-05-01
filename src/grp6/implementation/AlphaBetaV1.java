@@ -27,16 +27,19 @@ public class AlphaBetaV1 implements AlphaBeta{
             temp = new Move[depth];
             scores = new int[depth];
             starttime = System.currentTimeMillis();
+
             result = alphabeta(node, depth, a, b, isMaximizer);
+
             /*
             try{
-
-                temp = path;
+                result = alphabeta(node, depth, a, b, isMaximizer);
+                System.arraycopy(path, 0, temp, 0, depth);
             } catch (Exception e){
+                System.arraycopy(temp, 0, path, 0, depth);
                 e.printStackTrace();
                 break;
-            }*/
-
+            }
+            */
 
         }
 
@@ -46,6 +49,7 @@ public class AlphaBetaV1 implements AlphaBeta{
     }
 
     public int alphabeta(Node node, int depth, int a, int b, boolean isMaximizer) {
+
         /*
         double curTime = System.currentTimeMillis();
         if(curTime-starttime > 5000.0){
